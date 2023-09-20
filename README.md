@@ -1,7 +1,5 @@
 # snake-game-html-css-js
-Modified snake game in html,css,js (named Crystal Snake)
-
-Some comments for understanding the idea of my project.
+Modified snake game in html,css,js (named Crysta
 
 Crystal Snake is the usual snake game, but with some modifications: 
 -user needs to reach the target value of crystals
