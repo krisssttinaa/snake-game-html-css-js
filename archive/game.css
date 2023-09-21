@@ -1,0 +1,233 @@
+@keyframes go{
+    from {margin-left: 30%;}
+    to {margin-left: 40%;}
+}
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Kanit', sans-serif;
+    color: aliceblue;
+}
+
+/* basic styling */
+body {
+    padding: 3.5em;
+    background: #130647;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /*text-align: center;*/
+}
+
+/* game container */
+.game-container {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* game board */
+.game-board {
+    width: 80%;
+    height: 40em;
+    border: 0.1em solid white;
+    background: black;
+    border-radius: 0.2em;
+    box-shadow: 0 0 1em #000000;
+}
+
+/* style stones-obstacles */
+.stone, .stone1{
+    background-color: rgb(193, 179, 179); 
+    margin: 5%;
+    border-radius: 0.2em;
+    box-shadow: 0 0 1em #000000;
+}
+.stone_part1{
+    width: 3em; 
+    height: 2em; 
+    background-color: rgb(65, 60, 60); 
+}
+.stone_part2{
+    width: 5em; 
+    height: 2em; 
+    background-color: rgb(65, 60, 60); 
+}
+.stone1{
+    margin-top: 20%;
+    margin-left: 60%;
+}
+
+/* style snake */
+.whitesnake{
+    width: 30%;
+    height: 3%;
+    background-color: rgb(255, 255, 255);
+    margin-top: 20%;
+    margin-left: 20%;
+    border-radius: 0.5em;
+    animation: go 4s infinite linear alternate-reverse;
+}
+  
+/* style crystals */
+.crystal1, .crystal2, .crystal3{
+    width: 3.5em;
+    height: 3.5em;
+    display: block;
+    margin-top: 1%;
+    margin-left: 15%;
+    background: none;
+    animation: pulse 1s ease-in-out infinite;
+}
+.crystal2{
+    margin-top: -30%;
+    margin-left: 30%;
+}
+
+.crystal3{
+    margin-top: 5%;
+    margin-left: 85%;
+}
+
+.crystal4{
+    width: 3.5em;
+    height: 3.5em;
+    background: none;
+}
+
+/*display score and target */
+.control{
+    padding: 1em;
+    border: 0.1em solid white;
+    width: 27em;
+    height: 3.7em;
+    margin-top: 2%;
+    border-radius: 0.2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*background-color: black;*/
+    background: #afadbd;
+    box-shadow: 0 0 1em #000000;
+}
+
+/*score*/
+.score_div{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    /*background-color: black;*/
+    background: #afadbd;
+}
+.score {
+    text-align: right;
+    font-size: 1.5em;
+    background: none;
+}
+/*pause icon*/
+.pause{
+    width: 2.5em;
+    height: 2.5em;
+    background: none;
+    padding-top: 0.2em;
+}
+
+/*make responsive*/
+@media screen and (max-width: 902px) {
+    .game-board {
+        width: 100%;
+    }
+    .whitesnake{
+        width: 40%;
+        margin-top: 50%;
+        margin-left: 20%;
+    }
+    .control{
+        font-size: 100%;
+    }
+    .crystal2{
+        margin-top: -60%;
+    }
+    .stone_part1{
+        width: 2em; 
+        height: 1.5em; 
+        background-color: rgb(65, 60, 60); 
+    }
+    .stone_part2{
+        width: 2em; 
+        height: 1.5em; 
+        background-color: rgb(65, 60, 60); 
+    }
+    .stone1{
+        margin-top: 40%;
+        margin-left: 60%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .whitesnake{
+        width: 30%;
+        margin-top: 50%;
+        margin-left: 20%;
+        height: 2%;
+    }
+    .control{
+        font-size: 80%;
+    }
+    .crystal1, .crystal2, .crystal3{
+        width: 2em;
+        height: 2em;
+        margin-top: -30%;
+        margin-left: 15%;
+    }
+    .crystal2{
+        margin-top: 30%;
+        margin-left: 10%;
+    }
+    .crystal3{
+        margin-top: -40%;
+        margin-left: 70%;
+    }
+    .game-board {
+        position: relative;
+        width: 100%;
+    }
+    .stone_part1{
+        width: 1.5em; 
+        height: 1em; 
+        background-color: rgb(65, 60, 60); 
+    }
+    .stone_part2{
+        width: 2.5em; 
+        height: 1em; 
+        background-color: rgb(65, 60, 60); 
+    }
+    .stone1{
+        margin-top: 80%;
+        margin-left: 60%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .control{
+        font-size: 55%;
+    }
+    .game-board {
+        width: 100%;
+    }
+}
