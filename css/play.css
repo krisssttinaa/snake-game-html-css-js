@@ -1,0 +1,359 @@
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+  }
+  
+  body {
+    overflow: hidden;
+    color: white;
+    background: #07021e;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.37em;
+}
+  
+  .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .level{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-top: 0.5em;
+  }
+  
+  .screen {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .rules_h{
+    font-weight: bold;
+  }
+  
+  .screen .score {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    font-size: 4em;
+    padding: 0.5em;
+  }
+  
+  .screen .first-screen {
+    height: 21em;
+    width: 30em;
+    font-size: 1.3em;
+    color: rgb(238, 232, 232);
+    border-radius: 0.2em;
+    border: 0.1em solid white;
+    background: #130647;
+    box-shadow: 0 0 1em #000000;
+    animation: pulse 1s ease-in-out;
+  
+    position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40%;
+      height: 20em;
+      margin: -10em 0 0 -14em;
+      z-index: 1;
+  }
+  
+  .screen .first-screen h1 {
+    font-size: 1.5em;
+    margin-bottom: 0;
+  }
+  .screen .first-screen h3 {
+    margin: 0;
+    margin-bottom: 1em;
+  }
+  
+  .screen .first-screen button {
+    border-radius: 0.2em;
+    cursor: pointer;
+    color: inherit;
+    outline: 0;
+  }
+  
+  .screen .first-screen button:hover,
+  .screen .first-screen button.active {
+    background: #1c0d5c;
+    color: white;
+  }
+  
+  .screen .first-screen .play-btn:hover{
+    background: #4940ba;
+  }
+  
+  /* Game In Progress */
+  .screen.game-in-progress .score {
+    display: block;
+  }
+  
+  .screen.game-in-progress .first-screen {
+    display: none;
+  }
+  
+  /* Game Over */
+  .screen.game-over canvas {
+    opacity: 0.3;
+  }
+  
+  /* buttons */
+  .btn {
+    width: 45%;
+    margin: 0.4em;
+  
+    font-size: 1.2em;
+    text-align: center;
+    color: rgb(238, 232, 232);
+  
+    cursor: pointer;
+    border-radius: 0.2em;
+    background: #afadbd;
+    display: block;
+    transition: all 0.5s ease;
+    border: 0.1em solid white;
+    text-decoration: none;
+  }
+  .btn:hover {
+    background: #4940ba;
+  }
+  .btn-move {
+    max-width: 22em;
+  }
+  
+  .underscore-link {
+    width: 50%;
+    margin-bottom: 0.6em;
+    font-size: 1.2em;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+  display: block;
+  transition: all 0.5s ease;
+    border: none;
+    text-decoration: none;
+    position: relative;
+  }
+  
+  .underscore-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.1em;
+  background: currentColor;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+  transition: -webkit-transform 250ms ease-in;
+  transition: transform 250ms ease-in;
+  transition: transform 250ms ease-in, -webkit-transform 250ms ease-in;
+  }
+  
+  .underscore-link:hover::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  }
+  
+  /* Set animation properties */
+@keyframes pulse {
+    0% {
+      transform: scale(1.1);
+    }
+    40% {
+      transform: scale(1);
+    }
+    70% {
+        transform: scale(1.03);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+  
+
+
+  #overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#overlay p {
+    color: white;
+    font-size: 24px;
+    text-align: left;
+}
+  
+
+
+.whitesnake_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+    width: 6em;
+}
+
+.rules_h{
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.help_rules{
+    height: 75%;
+    width: 70%;
+    padding: 2em;
+    font-size: 1.2em;
+    color: rgb(238, 232, 232);
+    border-radius: 0.2em;
+    background: #afadbd;
+    text-align: left;
+    border: 0.1em solid white;
+    display: flex;
+    flex-direction: column;
+}
+
+.right{
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    justify-content: right;
+}
+
+/* resourse: 
+https://github.com/kevin-powell/fun-with-transforms-and-transform-origin/blob/master/css/main.css
+*/
+
+.back {
+    cursor: pointer;
+    background: none;
+	display: block;
+	transition: all 0.5s ease;
+    border: none;
+    text-decoration: none;
+    position: relative;
+    text-decoration: none;
+    text-align: right;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.back::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.1em;
+  background: currentColor;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: right;
+          transform-origin: right;
+  transition: -webkit-transform 250ms ease-in;
+  transition: transform 250ms ease-in;
+  transition: transform 250ms ease-in, -webkit-transform 250ms ease-in;
+}
+
+.back:hover::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+
+/*make responsive*/
+@media screen and (max-width: 902px) {
+    div.screen{
+        height: 20em;
+        width: 70%;
+    }
+    .underscore-link{
+        font-size: 1.1em;
+    }
+    .menu {
+        width: 11em;
+    }
+    .btn {
+        width: 70%;
+        margin: 0.3em;
+        font-size: 1.1em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    div.screen{
+        height: 19em;
+        width: 60%;
+    }
+    .menu {
+        width: 9em;
+    }
+    .underscore-link{
+        font-size: 1em;
+    }
+    .rules_h{
+        font-size: 0.8em;
+    }
+    .btn {
+        width: 70%;
+        margin: 0.3em;
+        font-size: 1.1em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    div.screen{
+        height: 19em;
+        width: 100%;
+    }
+    .underscore-link{
+        font-size: 0.9em;
+    }
+}
