@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="whitesnake_container">
+        <img src="img/snakewhite1.png" alt="logo" class="logo">
+        <h1 class="snake_text">Crystal Snake</h1>
+    </div>
+</header>
+<section>
+    <div class="menu_container">
+        <a class="btn" href="play.html">Play</a>
+        <button class="btn" onclick="on()">Help</button>
+        <button class="btn " id="deleteTabBtn" onclick="window.close()">Exit</button>
+        
+        
+    <div id="overlay" onclick="off()">
+        <div class="help_rules">
+            <p><span class="rules_h">Crystal Snake Game rules:</span><br>
+                <br>
+                1. The player controls the white snake, whose food are crystals ONLY, on the game board (use the arrow keys.)
+                <br>
+                2. The snake starts with a length of 5 and a default direction.
+                <br>
+                3. Each time the snake eats crystal, its length increases by 1 and a new crystal is randomly placed on the board.
+                <br>
+                4. If the snake collides with the walls or its own body, the game is over and the player loses.
+                <br>
+                5. The player's score is based on the number of crystals the snake eats.
+                <br>
+                6. The idea is to eat crystals without colliding with the walls, the stones-obstacles or the snake's own body.
+                <br>
+                7. The speed of snake is defined based on the level of difficulty that you have chosen.
+                <!--<br><br>
+                8. The first game is by default - in easy mode.-->
+                <br><br>
+                <span id="typing-text"></span></p>
+                <div class="right">
+                    <div class="back">
+                        <button class="back" href="index.html" onclick="off()">Back</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <script>
+         function typeText(text, delay, clear) {
+            let i = 0;
+            const typingText = document.getElementById("typing-text");
+            if (clear) {
+                //If the clear parameter is true, it sets the textContent 
+                //property of the typingText element to an empty string, 
+                //effectively clearing any existing text content.
+                typingText.textContent = " ";
+            }
+            const intervalId = setInterval(() => {
+                //It appends the character at the current index i of the 
+                //text string to the textContent property of the typingText element.
+                //It increments the i value by 1 to move to the next character in the text.
+                typingText.textContent += text[i];
+                i++;
+                if (i >= text.length) {
+                clearInterval(intervalId);
+                }
+            }, delay);
+        }
+    
+        // Call the function when you're ready to start typing
+            function on() {
+                document.getElementById("overlay").style.display = "flex";
+                typeText("Good luck! :)", 100, true);
+            }
+              
+            function off() {
+                document.getElementById("overlay").style.display = "none";
+                typeText("", 0, true);
+            }
+            function closeCurrentTab() {
+                window.close();
+            }
+            </script>
+</section>
+<footer>
+    <h4 class="rights">All rights reserved.</h4>
+</footer>
+</body>
+</html>
