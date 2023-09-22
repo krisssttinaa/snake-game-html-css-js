@@ -1,3 +1,12 @@
+//KRISTINA PIIARSKA
+//This is a Snake game written in JavaScript that uses the canvas 
+//element of HTML5 to create the game's graphics. 
+//(creating and resizing canvas, drawing elements, animationg elements, interacting with elements
+//we can create lines, rectangles, arcs (and circles), img, text)
+
+//This is a class called SnakeGame with a constructor that initializes 
+//the values of variables and properties 
+//(represents the game itself, including its logic, rendering, and interaction)
 class SnakeGame {
   constructor() {
     //Get elements from the DOM
@@ -7,6 +16,12 @@ class SnakeGame {
     variables that hold DOM elements. */
     this.$screen = document.querySelector('#screen');
     this.$canvas = this.$screen.querySelector('canvas');
+    //we're returning a drawing context to a variable called ctx
+    //simplier - with ctx we are creating a super object, we are passing 
+    //a ton of methods and functions in whick we can use to actually 
+    //draw  wihtin our canvas, magic paintbrush, only within 2d stage
+    //we can not draw cubes, spheres etc
+    //we draw 2d elements that can be manipulated within 2d space
     this.ctx = this.$canvas.getContext('2d');
     this.$firstScreen = this.$screen.querySelector('.first-screen');
     this.$score = this.$screen.querySelector('.score');
@@ -30,6 +45,7 @@ class SnakeGame {
       //The value is set to 150, snake will move at a rate of 170 milliseconds/step
       speed: 150,
       //This is an object that maps key codes to their corresponding directions. 
+      //It is used for keyboard input handling
       keyCodes: {
         37: 'left',
         38: 'Up', //mappings
@@ -39,6 +55,9 @@ class SnakeGame {
     };
 
     //Sound effects
+    //It is an object that holds references to audio files used in the game. 
+    //The sound effects are defined using the Audio constructor 
+    //and assigned to specific properties within the this.sound object.
     this.sound = {
       score: new Audio('./sound/score.mp3'),
       gameOver: new Audio('./sound/gameover.mp3')
@@ -53,10 +72,38 @@ class SnakeGame {
   initialiseGame() {
     //Event listener for difficulty buttons
     this.$firstScreen.querySelector('.selection').addEventListener('click', event => {
+      /*This line adds a click event listener to the "selection" element. 
+      When a click event occurs on any element within the "selection" element, 
+      the callback function is executed. The callback function receives 
+      the event object as a parameter. Inside the callback function, 
+      this.selectDifficulty(event.target.dataset.difficulty) is called. 
+      It invokes another method selectDifficulty() and 
+      passes the difficulty value from the clicked element's dataset as an argument. */
+
+      /*The dataset property allows you to access custom data attributes on HTML. 
+      The dataset is used to store the difficulty level associated with each difficulty button. */
+
+      /*The difficulty buttons in the HTML have custom data attributes defined, 
+      such as data-difficulty="easy", data-difficulty="medium", and data-difficulty="hard". 
+      These data attributes store the difficulty level for each button.
+
+      When a difficulty button is clicked, the event listener callback function is triggered.
+
+      The event.target property refers to the element that triggered the event, in this case, the clicked difficulty button.
+
+      event.target.dataset allows you to access the custom data attributes of the clicked button.
+
+      event.target.dataset.difficulty retrieves the value of the data-difficulty attribute 
+      of the clicked button. For example, if the "easy" difficulty button is clicked, 
+      event.target.dataset.difficulty will be "easy". */
       this.selectDifficulty(event.target.dataset.difficulty);
     });
 
     //Event listener for play button
+    /* This line adds a click event listener to the "play-btn" element. 
+    When the play button is clicked, the callback function is executed. 
+    Inside the callback function, this.startGame() is called. 
+    It invokes another method startGame() that begins the game.*/
     this.$firstScreen.querySelector('.play-btn').addEventListener('click', () => {
       this.startGame();
     });
