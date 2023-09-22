@@ -127,6 +127,10 @@ class SnakeGame {
     const y = 500;
 
     // Set initial crystalSnake array
+    /*By defining an array called this.crystalSnake. 
+    The snake is positioned horizontally in a row, starting from (x, y) 
+    and extending in the left direction. Each segment of the snake's body 
+    is represented by an object with x and y properties. */
 
     //The this.components.crystalSnake.largeness refers to the size of 
     //each segment of the snake's body. It is used to calculate the x
@@ -182,7 +186,16 @@ class SnakeGame {
       The validateDirectionChange method checks if the requested direction 
       change is valid based on the current direction of the snake. 
       If the requested direction is valid, it updates the 
-      nextDirection property of the game to the new direction.*/
+      nextDirection property of the game to the new direction.
+
+      The validateDirectionChange method ensures that the snake cannot
+      make a 180-degree turn or change direction to the opposite of 
+      its current direction. It restricts the valid direction 
+      changes to Up, Down, Left, and Right.
+
+      This logic prevents other keys from affecting the 
+      snake's movement and allows only the arrow keys to 
+      control the game. */
       document.addEventListener('keydown', event => {
         this.changeDirection(event.keyCode);
       });
@@ -194,6 +207,12 @@ class SnakeGame {
       in the this.game.keyCodes object. In this case, it will be an array of strings 
       representing the valid keyCodes for the snake's movement 
       ( "38" for Up, "40" for Down, "37" for Left, "39" for Right). */
+      /*keyCode.toString() converts the keyCode value, which is a number,
+      to a string. This is necessary because the array of keyCodes obtained from 
+      Object.keys() contains string values */
+      /*Array.includes() is a method that checks if a given value 
+      is present in an array. In this case, it checks if the converted 
+      keyCode string is present in the array of valid keyCodes */
       const validKeyPress = Object.keys(this.game.keyCodes).includes(keyCode.toString()); // Only allow (Up|down|left|right)
       /*validKeyPress, will be true if the pressed key's keyCode is included 
       in the array of valid keyCodes (Up, Down, Left, Right), indicating 
@@ -227,7 +246,9 @@ class SnakeGame {
       //This determines the color that will be used to fill the canvas.
       this.ctx.fillStyle = this.components.canvas.background;
       //fills a rectangle on the canvas starting from the top-left corner (0, 0) 
-      //with the width and height of the canvas element
+      //with the width and height of the canvas element. This effectively clears 
+      //the entire canvas by drawing a filled rectangle with the background 
+      //color specified earlier.
       this.ctx.fillRect(0, 0, this.$canvas.width, this.$canvas.height);
     }
   
@@ -264,6 +285,9 @@ class SnakeGame {
       }
   
       // Add the new coordinate to the crystalSnake array
+      /*After determining the new coordinates of the snake's head, 
+      it adds the new coordinate to the beginning of the this.crystalSnake 
+      array using unshift(). This represents the movement of the snake. */
       this.crystalSnake.unshift(coordinate);
       /*The canvas is then cleared using the resetCanvas() method 
       to prepare for rendering the updated snake position. */
@@ -307,6 +331,9 @@ class SnakeGame {
         this.ctx.fillRect(coordinate.x, coordinate.y, largeness, largeness);
         //this.ctx.strokeRect(coordinate.x, coordinate.y, largeness, largeness); // to draw an outline (border) around each segment of the snake
       });
+      /*After rendering all the segments of the snake on the canvas, it updates the 
+      this.game.direction property to be the same as this.game.nextDirection. 
+      This ensures that the snake's direction is updated for the next iteration. */
       this.game.direction = this.game.nextDirection;
     }
   
@@ -332,6 +359,9 @@ class SnakeGame {
       const yMax = this.components.canvas.height - gridSize;
       
       //It generates random x and y
+      //The coordinates are rounded to the nearest multiple of gridSize to align with the grid
+      //const x =Math.ceil(((Math.random() * xMax)-50) / gridSize) * gridSize;
+      //const y =Math.ceil(((Math.random() * yMax)) / gridSize) * gridSize;
       const x =Math.ceil(((Math.random() * xMax)) / gridSize) * gridSize;
       const y =Math.ceil(((Math.random() * yMax)) / gridSize) * gridSize;
   
@@ -372,6 +402,9 @@ class SnakeGame {
     //detecting collisions in the game. 
     //It checks for 2 collisions: self-collision and boundary collision.
     detectCollision() {
+      //self-collision can only occur when the head of the snake collides 
+      //with its own body, and the first 4 elements of the array represent 
+      //the initial position of the snake without any collision possibility.
       for(let i = 4; i < this.crystalSnake.length; i++) { 
         //it checks if the coordinates of the current segment 
         //are the same as the coordinates of the head of the snake 
